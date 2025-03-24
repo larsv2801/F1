@@ -3,7 +3,7 @@
     "short_name": "F1 stands",
     "description": "Formula 1 standings",
     "categories": ["sports", "news", "entertainment"]
-    "version": "1.0.1",
+    "version": "1.0.2",
     "background_color": "#000000",
     "theme_color": "#000000",
     "display": "standalone",
