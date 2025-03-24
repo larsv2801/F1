@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  #alles{
+    display: flex;
+  flex-direction: row; /* Zet de items naast elkaar */
+  overflow-x: auto; /* Maak horizontaal scrollen mogelijk */
+  max-width: 100vw; /* Beperk de breedte tot de viewport */
+  /*gap: 2vw; /* Optioneel: ruimte tussen de secties */
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0px;
+  }
+  #season, #race {
+  min-width: 100vw;
+  flex-basis: 100vw;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+  align-items:center;
+  padding-bottom: 1vw;
+  scroll-snap-align: start;/* Tijdelijk voor debug */
+}
+  .rijder{
+    flex-shrink: 0;
+    width:95vw;
+    margin-left:0vw;
+    border:2px solid;
+    border-radius:10px;
+    height:5vw;
+    color:white;
+    font-family:arial;
+    padding:1vw;
+    display:flex;
+    align-items:center;
+    position:relative;
+    font-size:1.5vw;
+  }
+  .pos{
+    position:absolute;
+    left:1%;
+  }
+
+  .driver{
+    position:absolute;
+    left:5%;
+  }
+  .team{
+    position:absolute;
+    left:50%;
+    transform:translate(-50%,-0%);
+  }
+  .points{
+    position:absolute;
+    left:90%;
+  }
+  body{
+    /*background:linear-gradient(orange, black 5%);*/
+    padding:0;
+    margin:0;
+  }
+
+  @media only screen and (max-width: 760px) {
+  #lijst {
+    gap:5vw;
+  }
+  .rijder{
+    height:15vw;
+    font-size:4vw;
+  }
+  .driver{
+    position:absolute;
+    left:10%;
+  }
+  .points{
+    position:absolute;
+    left:88%;
+  }
+  .seasontitle{
+    font-size:8vw;
+  }
+  .circuit{
+    font-size:8vw;
+  }
+}
+
+
+@font-face {
+    font-family: 'Formula1';
+    src: url('/Formula1-Bold.otf') format('opentype'); /* Zorg ervoor dat het pad klopt */
+    font-weight: bold;
+}
+
+p{
+  font-family:'Formula1';
+}
+
+.circuit{
+  color:white;
+  font-family:'Formula1';
+  margin-left:1vw;
+}
+
+.seasontitle{
+  color:white;
+  font-family:'Formula1';
+  margin-left:1vw;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+#alles::-webkit-scrollbar {
+  display: none;
+}
+h2{
+    font-size:5vw;
+  }
+</style>
+</head>
+<body>
+
+<br>
+
+<div id="alles">
+  <div id="season"></div>
+  <div id="race">
+    <!--<h2 class="circuit"></h2>-->
+  </div>
+</div>
+
+<script>
+var drivers;
+const url = "https://f1api.dev/api/2025/drivers-championship";
+
+const requestOptions = {
+  method: "GET",
+  redirect: "follow"
+};
+
+fetch(url, requestOptions)
+  .then((response) => response.json())
+  .then((result) => {
+    drivers = result.drivers_championship;
+    var ci = document.createElement("h2");
+    ci.className = "seasontitle";
+    ci.innerHTML = "Season";
+    var race = document.getElementById("season");
+    race.appendChild(ci);
+    var hoeveelste = 0;
+    drivers.forEach(driver => {
+      hoeveelste++;
+      var li = document.createElement("div");
+      li.className = "rijder";
+
+      if(driver.team.teamId === "mclaren"){
+        li.style.borderColor = "#FF8000";
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
+      } else if(driver.team.teamId === "red_bull"){
+        li.style.borderColor = "#3671C6";
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
+      } else if(driver.team.teamId === "mercedes"){
+        li.style.borderColor = "#27F4D2";
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
+      } else if(driver.team.teamId === "williams"){
+        li.style.borderColor = "#1868DB";
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
+      } else if(driver.team.teamId === "haas"){
+        li.style.borderColor = "#B6BABD";
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
+      } else if(driver.team.teamId === "aston_martin"){
+        li.style.borderColor = "#229971";
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
+      } else if(driver.team.teamId === "ferrari"){
+        li.style.borderColor = "#E80020";
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
+      } else if(driver.team.teamId === "sauber"){
+        li.style.borderColor = "#52E252";
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
+      } else if(driver.team.teamId === "rb"){
+        li.style.borderColor = "#6692FF";
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
+      } else if(driver.team.teamId === "alpine"){
+        li.style.borderColor = "#00A1E8";
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
+      }
+      var teambef = driver.team.teamId;
+      var teamaft = teambef.replace("_", " ");
+      teamaft = teamaft.replace("rb", "racing bulls");
+      teamaft = teamaft.toUpperCase();
+      li.innerHTML = `<p class="pos">${driver.position}</p> <p class="driver">${driver.driver.shortName}</p> <p class="team">${teamaft}</p> <p class="points">PTS: ${driver.points}</p>`;
+      var lijst = document.getElementById("season");
+      lijst.appendChild(li);
+    });
+  })
+  .catch((error) => console.error(error));
+
+
+
+
+
+
+
+var racedrivers;
+var raceurl = "https://f1api.dev/api/current/last/race";
+
+fetch(raceurl, requestOptions)
+  .then((response) => response.json())
+  .then((result) => {
+    racers = result.races.results;
+    var ci = document.createElement("h2");
+    ci.className = "circuit";
+    ci.innerHTML = `${result.races.circuit.circuitId}`;
+    var race = document.getElementById("race");
+    race.appendChild(ci);
+    racers.forEach(driver => {
+      var li = document.createElement("div");
+      li.className = "rijder";
+
+      if(driver.team.teamId === "mclaren"){
+        li.style.borderColor = "#FF8000";
+      } else if(driver.team.teamId === "red_bull"){
+        li.style.borderColor = "#3671C6";
+      } else if(driver.team.teamId === "mercedes"){
+        li.style.borderColor = "#27F4D2";
+      } else if(driver.team.teamId === "williams"){
+        li.style.borderColor = "#1868DB";
+      } else if(driver.team.teamId === "haas"){
+        li.style.borderColor = "#B6BABD";
+      } else if(driver.team.teamId === "aston_martin"){
+        li.style.borderColor = "#229971";
+      } else if(driver.team.teamId === "ferrari"){
+        li.style.borderColor = "#E80020";
+      } else if(driver.team.teamId === "sauber"){
+        li.style.borderColor = "#52E252";
+      } else if(driver.team.teamId === "rb"){
+        li.style.borderColor = "#6692FF";
+      } else if(driver.team.teamId === "alpine"){
+        li.style.borderColor = "#00A1E8";
+      }
+      var teambef = driver.team.teamId;
+      var teamaft = teambef.replace("_", " ");
+      teamaft = teamaft.replace("rb", "racing bulls");
+      teamaft = teamaft.toUpperCase();
+      li.innerHTML = `<p class="pos">${driver.position}</p> <p class="driver">${driver.driver.shortName}</p> <p class="team">${teamaft}</p> <p class="points">PTS: ${driver.points}</p>`;
+      var race = document.getElementById("race");
+      race.appendChild(li);
+    });
+  })
+  .catch((error) => console.error(error));
+</script>
+</body>
+</html>
+
