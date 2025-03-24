@@ -190,7 +190,7 @@ fetch(url, requestOptions)
       var teamaft = teambef.replace("_", " ");
       teamaft = teamaft.replace("rb", "racing bulls");
       teamaft = teamaft.toUpperCase();
-      li.innerHTML = `<p class="pos">${driver.position}</p> <p class="driver">${driver.driver.shortName}</p> <p class="team">${teamaft}</p> <p class="points">PTS: ${driver.points}</p>`;
+      li.innerHTML = `<p class="pos">${driver.position}</p> <p class="driver">${driver.driver.shortName}</p> <p class="team">${teamaft}</p> <p class="points">PTS:  ${driver.points}</p>`;
       var lijst = document.getElementById("season");
       lijst.appendChild(li);
     });
@@ -244,7 +244,7 @@ fetch(raceurl, requestOptions)
       var teamaft = teambef.replace("_", " ");
       teamaft = teamaft.replace("rb", "racing bulls");
       teamaft = teamaft.toUpperCase();
-      li.innerHTML = `<p class="pos">${driver.position}</p> <p class="driver">${driver.driver.shortName}</p> <p class="team">${teamaft}</p> <p class="points">PTS: ${driver.points}</p>`;
+      li.innerHTML = `<p class="pos">${driver.position}</p> <p class="driver">${driver.driver.shortName}</p> <p class="team">${teamaft}</p> <p class="points">PTS:  ${driver.points}</p>`;
       var race = document.getElementById("race");
       race.appendChild(li);
     });
