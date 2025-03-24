@@ -7,7 +7,7 @@ self.addEventListener('install', (event) => {
         '/F1/voorlopiglogo192.png',
         '/F1/voorlopiglogo144.png',
         '/F1/voorlopiglogo.png',
-        'F1/Formula1-Bold.otf'
+        '/F1/Formula1-Bold.otf'
       ]);
     })
   );
