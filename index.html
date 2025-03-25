@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="manifest" href="manifest.json?v=1.0.2">
+<link rel="manifest" href="manifest.json?v=1.0.2">
 <style>
   #alles{
     display: flex;
@@ -12,7 +12,7 @@
   scroll-snap-type: x mandatory;
   scroll-padding: 0px;
   }
-  #season, #race {
+  #season, #race, #teams {
   min-width: 100vw;
   flex-basis: 100vw;
   flex-shrink: 0;
@@ -20,7 +20,7 @@
   flex-direction: column;
   gap: 2vw;
   align-items:center;
-  padding-bottom: 1vw;
+  padding-bottom: 8vw;
   scroll-snap-align: start;
 }
   .rijder{
@@ -60,8 +60,20 @@
     padding:0;
     margin:0;
   }
+  .teamlogo{
+  position:absolute;
+  left:8%;
+  width:4vw;
+  mix-blend-mode: unset;
+}
 
-  @media only screen and (max-width: 760px) {
+.backcar{
+    height:5vw;
+    position:absolute;
+    left:15%;
+  }
+
+  @media only screen and (max-width: 780px) {
   #lijst {
     gap:5vw;
   }
@@ -75,7 +87,7 @@
   }
   .points{
     position:absolute;
-    left:86%;
+    left:88%;
   }
   .seasontitle{
     font-size:8vw;
@@ -83,15 +95,26 @@
   .circuit{
     font-size:8vw;
   }
-    #season, #race{
-      padding-bottom:9vw;
-    }
+  .conc{
+    font-size:8vw;
+  }
+  .teamlogo{
+  position:absolute;
+  left:10%;
+  width:7vw;
+}
+  .backcar{
+    height:15vw;
+    position:absolute;
+    left:50%;
+    transform:translate(-50%,-0%);
+  }
 }
 
 
 @font-face {
     font-family: 'Formula1';
-    src: url('Formula1-Bold.otf') format('opentype'); /* Zorg ervoor dat het pad klopt */
+    src: url('Formula1-Bold.otf') format('opentype');
     font-weight: bold;
 }
 
@@ -110,6 +133,12 @@ p{
   font-family:'Formula1';
   margin-left:1vw;
 }
+
+.conc{
+  color:white;
+  font-family:'Formula1';
+  margin-left:1vw;
+}
 body::-webkit-scrollbar {
   display: none;
 }
@@ -119,6 +148,7 @@ body::-webkit-scrollbar {
 h2{
     font-size:5vw;
   }
+
 </style>
 </head>
 <body>
@@ -127,9 +157,8 @@ h2{
 
 <div id="alles">
   <div id="season"></div>
-  <div id="race">
-    <!--<h2 class="circuit"></h2>-->
-  </div>
+  <div id="race"></div>
+  <div id="teams"></div>
 </div>
 
 <script>
@@ -161,31 +190,31 @@ fetch(url, requestOptions)
         if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 9%)";}
       } else if(driver.team.teamId === "red_bull"){
         li.style.borderColor = "#3671C6";
-        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 9%)";}
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
       } else if(driver.team.teamId === "mercedes"){
         li.style.borderColor = "#27F4D2";
-        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 9%)";}
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
       } else if(driver.team.teamId === "williams"){
         li.style.borderColor = "#1868DB";
-        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 9%)";}
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
       } else if(driver.team.teamId === "haas"){
         li.style.borderColor = "#B6BABD";
-        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 9%)";}
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
       } else if(driver.team.teamId === "aston_martin"){
         li.style.borderColor = "#229971";
-        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 9%)";}
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
       } else if(driver.team.teamId === "ferrari"){
         li.style.borderColor = "#E80020";
-        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 9%)";}
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
       } else if(driver.team.teamId === "sauber"){
         li.style.borderColor = "#52E252";
-        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 9%)";}
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
       } else if(driver.team.teamId === "rb"){
         li.style.borderColor = "#6692FF";
-        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 9%)";}
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
       } else if(driver.team.teamId === "alpine"){
         li.style.borderColor = "#00A1E8";
-        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 9%)";}
+        if(hoeveelste === 1){document.body.style.background = "linear-gradient(" + li.style.borderColor + ", black 5%)";}
       }
       var teambef = driver.team.teamId;
       var teamaft = teambef.replace("_", " ");
@@ -245,9 +274,77 @@ fetch(raceurl, requestOptions)
       var teamaft = teambef.replace("_", " ");
       teamaft = teamaft.replace("rb", "racing bulls");
       teamaft = teamaft.toUpperCase();
-      li.innerHTML = `<p class="pos">${driver.position}</p> <p class="driver">${driver.driver.shortName}</p> <p class="team">${teamaft}</p> <p class="points">PTS:  ${driver.points}</p>`;
+      li.innerHTML = `<p class="pos">${driver.position}</p> <p class="driver">${driver.driver.shortName}</p> <p class="team">${teamaft}</p> <p class="points">PTS: ${driver.points}</p>`;
       var race = document.getElementById("race");
       race.appendChild(li);
+    });
+  })
+  .catch((error) => console.error(error));
+
+
+
+
+
+
+
+var teams;
+var teamurl = "https://f1api.dev/api/current/constructors-championship";
+
+fetch(teamurl, requestOptions)
+  .then((response) => response.json())
+  .then((result) => {
+    teams = result.constructors_championship;
+    var ti = document.createElement("h2");
+    ti.className = "conc";
+    ti.innerHTML = `Constructors`;
+    var Constructors = document.getElementById("teams");
+    Constructors.appendChild(ti);
+    teams.forEach(driver => {
+      var li = document.createElement("div");
+      li.className = "rijder";
+
+      if(driver.teamId === "mclaren"){
+        li.style.borderColor = "#FF8000";
+        var teamlogo = "https://cdn3.emoji.gg/emojis/9807_McLaren_Logo.png";
+      } else if(driver.teamId === "red_bull"){
+        li.style.borderColor = "#3671C6";
+        var teamlogo = "https://1000logos.net/wp-content/uploads/2021/04/Red-Bull-logo.png";
+      } else if(driver.teamId === "mercedes"){
+        li.style.borderColor = "#27F4D2";
+        var teamlogo = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/2048px-Mercedes-Logo.svg.png";
+      } else if(driver.teamId === "williams"){
+        li.style.borderColor = "#1868DB";
+        var teamlogo = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Logo_Williams_F1.png/2560px-Logo_Williams_F1.png";
+      } else if(driver.teamId === "haas"){
+        li.style.borderColor = "#B6BABD";
+        var teamlogo = "https://cdn.webshopapp.com/shops/190718/files/261046208/haas.jpg";
+      } else if(driver.teamId === "aston_martin"){
+        li.style.borderColor = "#229971";
+        var teamlogo = "https://1000logos.net/wp-content/uploads/2020/02/Aston-Martin-Logo-1984.png";
+      } else if(driver.teamId === "ferrari"){
+        li.style.borderColor = "#E80020";
+        var teamlogo = "https://images2.gazzettaobjects.it/assets-mc/motori/teams/f1/4_n.png";
+      } else if(driver.teamId === "sauber"){
+        li.style.borderColor = "#52E252";
+        var teamlogo = "https://fansbrands.de/cdn/shop/collections/kick-logo-500x500-collection.png?crop=center&height=1200&v=1728150625&width=1200";
+      } else if(driver.teamId === "rb"){
+        li.style.borderColor = "#6692FF";
+        var teamlogo = "https://cdn.prod.website-files.com/61b372525d9e220633140352/65df7c39bce657df7423a0af_Visa_Cash_App_RB_team_logo.webp";
+      } else if(driver.teamId === "alpine"){
+        li.style.borderColor = "#00A1E8";
+        var teamlogo = "https://brandlogos.net/wp-content/uploads/2022/08/alpine_logomark-logo_brandlogos.net_pzhvz.png";
+      }
+      var teambef = driver.teamId;
+      var teamaft = teambef.replace("_", " ");
+      teamaft = teamaft.replace("rb", "racing bulls");
+      teamaft = teamaft.toUpperCase();
+      var carsrc = teamaft.toLowerCase();
+      carsrc = carsrc.replace(" ", "-");
+      carsrc = carsrc.replace("red-bull", "red-bull-racing");
+      carsrc = carsrc.replace("sauber", "kick-sauber");
+      li.innerHTML = `<img class="backcar" src="https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/${carsrc}.png"><p class="pos">${driver.position}</p><img class="teamlogo" src="${teamlogo}"><p class="team">${teamaft}</p> <p class="points">PTS: ${driver.points}</p>`;
+      var teamss = document.getElementById("teams");
+      teamss.appendChild(li);
     });
   })
   .catch((error) => console.error(error));
