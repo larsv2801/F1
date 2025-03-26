@@ -40,7 +40,7 @@
   }
   .pos{
     position:absolute;
-    left:1%;
+    left:2%;
   }
 
   .driver{
@@ -59,6 +59,7 @@
   body{
     padding:0;
     margin:0;
+    overflow-x: hidden;
   }
   .teamlogo{
   position:absolute;
@@ -72,11 +73,17 @@
     position:absolute;
     left:15%;
   }
+  #teams .wins {
+    display:none;
+  }
+  #teams .dchamp {
+    display:none;
+  }
+  #teams .cchamp {
+    display:none;
+  }
 
   @media only screen and (max-width: 780px) {
-  #lijst {
-    gap:5vw;
-  }
   .rijder{
     height:15vw;
     font-size:4vw;
@@ -102,6 +109,7 @@
   position:absolute;
   left:10%;
   width:7vw;
+  /*height:7vw;*/
 }
   .backcar{
     height:15vw;
@@ -110,7 +118,65 @@
     transform:translate(-50%,-0%);
   }
   .team{
-    text-shadow: black 1px 0 3px;
+    text-shadow: black 1px 0 2px;
+  }
+  #teams .rijder{
+    height: calc(32vw + 3.2px);
+    padding-bottom:2vw;
+    padding-top:2vw;
+  }
+  #teams .backcar{
+    position:absolute;
+    left:50%;
+    top:22%;
+    transform:translate(-50%,-50%);
+  }
+  #teams .team{
+    position:absolute;
+    left:50%;
+    top:5.5%;
+    transform:translate(-50%,-0%);
+  }
+  #teams .points{
+    position:absolute;
+    top:0%;
+    left:88%;
+  }
+  #teams .pos {
+    position:absolute;
+    top:4%;
+  }
+  #teams .teamlogo {
+    position:absolute;
+    top:21%;
+    transform:translate(-0%,-50%);
+  }
+  #teams .wins {
+    display:block;
+    color:white;
+    font-family: 'Formula1';
+    position:absolute;
+    top:60%;
+    left:20%;
+    transform:translate(-50%,-50%);
+  }
+  #teams .dchamp {
+    display:block;
+    color:white;
+    font-family: 'Formula1';
+    position:absolute;
+    top:60%;
+    left:50%;
+    transform:translate(-50%,-50%);
+  }
+  #teams .cchamp {
+    display:block;
+    color:white;
+    font-family: 'Formula1';
+    position:absolute;
+    top:60%;
+    left:80%;
+    transform:translate(-50%,-50%);
   }
 }
 
@@ -354,7 +420,7 @@ fetch(teamurl, requestOptions)
       carsrc = carsrc.replace(" ", "-");
       carsrc = carsrc.replace("red-bull", "red-bull-racing");
       carsrc = carsrc.replace("sauber", "kick-sauber");
-      li.innerHTML = `<img class="backcar" src="https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/${carsrc}.png"><p class="pos">${driver.position}</p><img class="teamlogo" src="${teamlogo}"><p class="team">${teamaft}</p> <p class="points">PTS: ${driver.points}</p>`;
+      li.innerHTML = `<img class="backcar" src="https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/${carsrc}.png"><p class="pos">${driver.position}</p><img class="teamlogo" src="${teamlogo}"><p class="team">${teamaft}</p> <p class="points">PTS: ${driver.points}</p> <p class="wins">Wins: <br> ${driver.wins}</p> <p class="dchamp">DCH: <br> ${driver.team.driversChampionships}</p> <p class="cchamp">CCH:<br> ${driver.team.constructorsChampionships}</p>`;
       var teamss = document.getElementById("teams");
       teamss.appendChild(li);
     });
