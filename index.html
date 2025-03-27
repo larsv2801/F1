@@ -82,6 +82,18 @@
   #teams .cchamp {
     display:none;
   }
+  .circuitimg{
+  width:30vw;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display:flex;
+  z-index:1;
+  filter: grayscale(60%) brightness(85%);
+  opacity: 0.8;
+  mix-blend-mode: multiply;
+  }
 
   @media only screen and (max-width: 780px) {
   .rijder{
@@ -110,7 +122,6 @@
   position:absolute;
   left:10%;
   width:7vw;
-  /*height:7vw;*/
 }
   .backcar{
     height:15vw;
@@ -179,6 +190,18 @@
     top:60%;
     left:80%;
     transform:translate(-50%,-50%);
+  }
+    .circuitimg{
+  width:40vw;
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translateX(-50%);
+  display:flex;
+  z-index:1;
+  filter: grayscale(60%) brightness(85%);
+  opacity: 0.8;
+  mix-blend-mode: multiply;
   }
 }
 
@@ -319,6 +342,21 @@ var raceurl = "https://f1api.dev/api/current/last/race";
 fetch(raceurl, requestOptions)
   .then((response) => response.json())
   .then((result) => {
+  var circuitimg = result.races.circuit.circuitId;
+    circuitimg = circuitimg.replace(" ", "%20");
+
+    var cimg = document.createElement("img");
+    cimg.className = "circuitimg";
+
+    cimg.onerror = () => {
+    var fallbackImg = result.races.circuit.country.replace(" ", "%20");
+    cimg.src = `https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/${fallbackImg}.png`;
+};
+    cimg.src = `https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/${circuitimg}.png`;
+
+    var race = document.getElementById("race");
+    race.appendChild(cimg);
+    
     racers = result.races.results;
     var ci = document.createElement("h2");
     ci.className = "circuit";
