@@ -459,11 +459,20 @@ fetch(teamurl, requestOptions)
       var teamaft = teambef.replace("_", " ");
       teamaft = teamaft.replace("rb", "racing bulls");
       teamaft = teamaft.toUpperCase();
+      
       var carsrc = teamaft.toLowerCase();
       carsrc = carsrc.replace(" ", "-");
       carsrc = carsrc.replace("red-bull", "red-bull-racing");
       carsrc = carsrc.replace("sauber", "kick-sauber");
-      li.innerHTML = `<img class="backcar" src="https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/${carsrc}.png"><p class="pos">${driver.position}</p><img class="teamlogo" src="${teamlogo}"><p class="team">${teamaft}</p> <p class="points">PTS: ${driver.points}</p> <p class="wins">Wins: <br> ${driver.wins}</p> <p class="dchamp">DCH: <br> ${driver.team.driversChampionships}</p> <p class="cchamp">CCH:<br> ${driver.team.constructorsChampionships}</p>`;
+      
+      var winz = driver.wins;
+      winz = String(winz).replace("null", "0");
+      var dchz = driver.team.driversChampionships;
+      dchz = String(dchz).replace("null", "0");
+      var cchz = driver.team.constructorsChampionships;
+      cchz = String(dchz).replace("null", "0");
+
+      li.innerHTML = `<img class="backcar" src="https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/${carsrc}.png"><p class="pos">${driver.position}</p><img class="teamlogo" src="${teamlogo}"><p class="team">${teamaft}</p> <p class="points">PTS: ${driver.points}</p> <p class="wins">Wins: <br> ${winz}</p> <p class="dchamp">DCH: <br> ${dchz}</p> <p class="cchamp">CCH:<br> ${driver.team.constructorsChampionships}</p>`;
       var teamss = document.getElementById("teams");
       teamss.appendChild(li);
     });
