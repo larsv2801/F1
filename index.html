@@ -471,9 +471,9 @@ fetch(teamurl, requestOptions)
       var dchz = driver.team.driversChampionships;
       dchz = String(dchz).replace("null", "0");
       var cchz = driver.team.constructorsChampionships;
-      cchz = String(dchz).replace("null", "0");
+      cchz = String(cchz).replace("null", "0");
 
-      li.innerHTML = `<img class="backcar" src="https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/${carsrc}.png"><p class="pos">${driver.position}</p><img class="teamlogo" src="${teamlogo}"><p class="team">${teamaft}</p> <p class="points">PTS: ${driver.points}</p> <p class="wins">Wins: <br> ${winz}</p> <p class="dchamp">DCH: <br> ${dchz}</p> <p class="cchamp">CCH:<br> ${driver.team.constructorsChampionships}</p>`;
+      li.innerHTML = `<img class="backcar" src="https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/${carsrc}.png"><p class="pos">${driver.position}</p><img class="teamlogo" src="${teamlogo}"><p class="team">${teamaft}</p> <p class="points">PTS: ${driver.points}</p> <p class="wins">Wins: <br> ${winz}</p> <p class="dchamp">DCH: <br> ${dchz}</p> <p class="cchamp">CCH:<br> ${cchz}</p>`;
       var teamss = document.getElementById("teams");
       teamss.appendChild(li);
     });
