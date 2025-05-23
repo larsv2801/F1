@@ -36,12 +36,12 @@
   {
     "src": "/F1/imola.png",
     "sizes": "1084x2069",
-    "type": "image/png",
+    "type": "image/png"
   },
   {
     "src": "/F1/season.png",
     "sizes": "1084x2066",
-    "type": "image/png",
+    "type": "image/png"
   }
   ]
 }
