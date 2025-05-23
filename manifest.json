@@ -4,7 +4,7 @@
     "description": "Formula 1 standings",
     "categories": ["sports", "news", "entertainment"],
     "start_url": "/F1/index.html?homescreen=true",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "background_color": "#000000",
     "theme_color": "#000000",
     "display": "standalone",
