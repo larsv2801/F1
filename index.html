@@ -395,12 +395,14 @@ var circuitimg = raceObj.Circuit.circuitId;
         li.style.borderColor = "#229971";
       } else if(driver.Constructor.constructorId === "ferrari"){
         li.style.borderColor = "#E80020";
-      } else if(driver.Constructor.constructorId === "sauber"){
-        li.style.borderColor = "#52E252";
+      } else if(driver.Constructor.constructorId === "audi"){
+        li.style.borderColor = "#fc2c00";
       } else if(driver.Constructor.constructorId === "rb"){
         li.style.borderColor = "#6692FF";
       } else if(driver.Constructor.constructorId === "alpine"){
         li.style.borderColor = "#00A1E8";
+      } else if(driver.Constructor.constructorId === "cadillac"){
+        li.style.borderColor = "#a9a9ac";
       }
       var teambef = driver.Constructor.name;
       teamaft = teambef.toUpperCase();
@@ -475,12 +477,11 @@ fetch(teamurl, requestOptions)
       var carsrc = teamaft.toLowerCase();
       carsrc = carsrc.replace(" ", "-");
       carsrc = carsrc.replace("red-bull", "red-bull-racing");
-      carsrc = carsrc.replace("sauber", "kick-sauber");
 
       var winz = driver.wins;
       winz = String(winz).replace("null", "0");
 
-      li.innerHTML = `<img class="backcar" src="https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/${carsrc}.png"><p class="pos">${driver.position}</p><img class="teamlogo" src="${teamlogo}"><p class="team">${teamaft}</p> <p class="points">PTS: ${driver.points}</p> <p class="wins">Wins: <br> ${winz}</p> <p class="dchamp">`;
+      li.innerHTML = `<img class="backcar" src="https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2026/${carsrc}.png"><p class="pos">${driver.position}</p><img class="teamlogo" src="${teamlogo}"><p class="team">${teamaft}</p> <p class="points">PTS: ${driver.points}</p> <p class="wins">Wins: <br> ${winz}</p> <p class="dchamp">`;
       var teamss = document.getElementById("teams");
       teamss.appendChild(li);
     });
@@ -489,4 +490,5 @@ fetch(teamurl, requestOptions)
 </script>
 </body>
 </html>
+
 
