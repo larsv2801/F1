@@ -335,7 +335,7 @@ fetch(url, requestOptions)
       var teamaft = teambef.replace("_", " ");
       teamaft = teamaft.replace("rb", "racing bulls");
       teamaft = teamaft.toUpperCase();
-      li.innerHTML = `<p class="pos">${driver.position}</p> <p class="driver">${driver.Driver.code}</p> <p class="team">${teamaft}</p> <p class="points">PTS:  ${driver.points}</p>`;
+      li.innerHTML = `<p class="pos">${hoeveelste}</p> <p class="driver">${driver.Driver.code}</p> <p class="team">${teamaft}</p> <p class="points">PTS:  ${driver.points}</p>`;
       var lijst = document.getElementById("season");
       lijst.appendChild(li);
     });
@@ -374,7 +374,9 @@ var circuitimg = raceObj.Circuit.circuitId;
     racers = result.MRData.RaceTable.Races[0].Results;
     var ci = document.createElement("h2");
     ci.className = "circuit";
-    ci.innerHTML = `${raceObj.Circuit.circuitId}`;
+    var namecircuit = raceObj.Circuit.circuitId;
+    var namecircuit = namecircuit.replace("_", " ");
+    ci.innerHTML = `${namecircuit}`;
     var race = document.getElementById("race");
     race.appendChild(ci);
     racers.forEach(driver => {
@@ -476,7 +478,7 @@ fetch(teamurl, requestOptions)
 
       var carsrc = teamaft.toLowerCase();
       carsrc = carsrc.replace(" ", "");
-      carsrc = carsrc.replace("red-bull", "red-bull-racing");
+      carsrc = carsrc.replace("red-bull", "redbullracing");
       carsrc = carsrc.toLowerCase()
 
       var winz = driver.wins;
@@ -491,6 +493,7 @@ fetch(teamurl, requestOptions)
 </script>
 </body>
 </html>
+
 
 
 
