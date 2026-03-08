@@ -435,7 +435,9 @@ fetch(teamurl, requestOptions)
     ti.innerHTML = `Constructors`;
     var Constructors = document.getElementById("teams");
     Constructors.appendChild(ti);
+    var hoeveelstec = 0;
     teams.forEach(driver => {
+      hoeveelstec++;
       var li = document.createElement("div");
       li.className = "rijder";
 
@@ -460,8 +462,8 @@ fetch(teamurl, requestOptions)
       } else if(driver.Constructor.constructorId === "ferrari"){
         li.style.borderColor = "#E80020";
         var teamlogo = "https://images2.gazzettaobjects.it/assets-mc/motori/teams/f1/4_n.png";
-      } else if(driver.Constructor.constructorId === "sauber"){
-        li.style.borderColor = "#52E252";
+      } else if(driver.Constructor.constructorId === "audi"){
+        li.style.borderColor = "#fc2c00";
         var teamlogo = "https://fansbrands.de/cdn/shop/collections/kick-logo-500x500-collection.png?crop=center&height=1200&v=1728150625&width=1200";
       } else if(driver.Constructor.constructorId === "rb"){
         li.style.borderColor = "#6692FF";
@@ -469,6 +471,9 @@ fetch(teamurl, requestOptions)
       } else if(driver.Constructor.constructorId === "alpine"){
         li.style.borderColor = "#00A1E8";
         var teamlogo = "https://brandlogos.net/wp-content/uploads/2022/08/alpine_logomark-logo_brandlogos.net_pzhvz.png";
+      } else if(driver.Constructor.constructorId === "cadillac"){
+        li.style.borderColor = "#a9a9ac";
+        var teamlogo = "https://media.formula1.com/image/upload/c_lfill,w_48/q_auto/v1740000000/common/f1/2026/cadillac/2026cadillaclogowhite.webp";
       }
 
       var teambef = driver.Constructor.constructorId;
@@ -478,13 +483,13 @@ fetch(teamurl, requestOptions)
 
       var carsrc = teamaft.toLowerCase();
       carsrc = carsrc.replace(" ", "");
-      carsrc = carsrc.replace("red-bull", "redbullracing");
+      carsrc = carsrc.replace("red_bull", "redbullracing");
       carsrc = carsrc.toLowerCase()
 
       var winz = driver.wins;
       winz = String(winz).replace("null", "0");
 
-      li.innerHTML = `<img class="backcar" src="https://media.formula1.com/image/upload/c_lfill,h_224/q_auto/d_common:f1:2026:fallback:car:2026fallbackcarright.webp/v1740000000/common/f1/2026/${carsrc}/2026${carsrc}carright.webp"><p class="pos">${driver.position}</p><img class="teamlogo" src="${teamlogo}"><p class="team">${teamaft}</p> <p class="points">PTS: ${driver.points}</p> <p class="wins">Wins: <br> ${winz}</p> <p class="dchamp">`;
+      li.innerHTML = `<img class="backcar" src="https://media.formula1.com/image/upload/c_lfill,h_224/q_auto/d_common:f1:2026:fallback:car:2026fallbackcarright.webp/v1740000000/common/f1/2026/${carsrc}/2026${carsrc}carright.webp"><p class="pos">${hoeveelstec}</p><img class="teamlogo" src="${teamlogo}"><p class="team">${teamaft}</p> <p class="points">PTS: ${driver.points}</p> <p class="wins">Wins: <br> ${winz}</p> <p class="dchamp">`;
       var teamss = document.getElementById("teams");
       teamss.appendChild(li);
     });
@@ -493,6 +498,7 @@ fetch(teamurl, requestOptions)
 </script>
 </body>
 </html>
+
 
 
 
